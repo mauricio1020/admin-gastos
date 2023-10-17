@@ -5,26 +5,25 @@
         const presupuesto = ref(0)
         const error = ref('')
 
-        const definirPresupuesto = () => {
-            if(presupuesto.value <= 0) {
-                error.value = 'Presupuesto no válido'
+        const emit = defineEmits(['definir-presupuesto'])
 
+        const definirPresupuesto = () => {
+            if(presupuesto.value <= 0 || presupuesto.value === '') {
+                error.value = 'Presupuesto no válido'
                 setTimeout( () => {
                     error.value = ''
                 }, 3000)
+                return
             }
+            emit('definir-presupuesto', presupuesto.value)
         }
 </script>
     
 
 <template>
-
-        <form 
-                class="presupuesto"
-                @submit.prevent="definirPresupuesto"
-        >
+        <form class="presupuesto" @submit.prevent="definirPresupuesto">
              <Alerta v-if="error">
-                    {{  error }}
+                {{  error }}
              </Alerta>
             <div class="campo">
                 <label for="nuevo-presunpuesto">Definir Presupuesto</label>
@@ -43,7 +42,6 @@
 
 
 <style  scoped>
-
     .presupuesto {
         width: 100%
     }
