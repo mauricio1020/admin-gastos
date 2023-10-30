@@ -11,6 +11,10 @@
         disponible: {
             type: Number,
             required: true
+        },
+        gastado: {
+            type: Number,
+            required:true
         }
     })
 
@@ -26,14 +30,15 @@
             <button class="reset-app">Resetear App</button>
             <p>
                 <span>Presupuesto:</span>
-                     {{   formatearCantidad(presupuesto) }}
+                    {{ formatearCantidad(presupuesto) }}
             </p>
             <p>
                 <span>Disponible:</span>
-                     {{  formatearCantidad(disponible) }}
+                    {{ formatearCantidad(disponible) }}
             </p>
             <p>
                 <span>Gastado:</span>
+                    {{ formatearCantidad(gastado) }}
             </p>
 
         </div>
